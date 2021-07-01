@@ -1,5 +1,7 @@
 <?php
 
+use MollyMage\Solver;
+
 require_once('../../../engine/GameSolver.php');
 require_once('../../../engine/GameBoard.php');
 require_once('../../../engine/Point.php');

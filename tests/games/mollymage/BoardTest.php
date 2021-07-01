@@ -1,5 +1,8 @@
 <?php
 
+use MollyMage\Board;
+use MollyMage\Element;
+
 require_once('../../../engine/GameSolver.php');
 require_once('../../../engine/GameBoard.php');
 require_once('../../../engine/Point.php');
@@ -13,44 +16,44 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_getAt_invalidPoint()
     {
-        $board = new GameBoard("###" . "###" . "###");
-        $this->assertEquals(MollyMageElement::$elements['WALL'], $board->getAt(new Point(-1, -1)));
+        $board = new Board("###" . "###" . "###");
+        $this->assertEquals(Element::$elements['WALL'], $board->getAt(new Point(-1, -1)));
     }
 
     public function test_findHero()
     {
-        $board = new GameBoard("#☺#" . "###" . "###");
+        $board = new Board("#☺#" . "###" . "###");
         $this->assertEquals(new Point(1, 2), $board->findHero());
 
-        $board = new GameBoard("###" . "#☻#" . "###");
+        $board = new Board("###" . "#☻#" . "###");
         $this->assertEquals(new Point(1, 1), $board->findHero());
 
-        $board = new GameBoard("###" . "###" . "#Ѡ#");
+        $board = new Board("###" . "###" . "#Ѡ#");
         $this->assertEquals(new Point(1, 0), $board->findHero());
 
-        $board = new GameBoard("Ѡ☺☻" . "###" . "###");
+        $board = new Board("Ѡ☺☻" . "###" . "###");
         $this->assertEquals(new Point(0, 2), $board->findHero());
     }
 
     public function test_findHero_noResult()
     {
         $this->expectException(UnexpectedValueException::class);
-        $board = new GameBoard("###" . "###" . "###");
+        $board = new Board("###" . "###" . "###");
         $board->findHero();
     }
 
     public function test_isGameOver()
     {
-        $board = new GameBoard("###" . "##☺" . "###");
+        $board = new Board("###" . "##☺" . "###");
         $this->assertEquals(false, $board->isGameOver());
 
-        $board = new GameBoard("###" . "Ѡ##" . "###");
+        $board = new Board("###" . "Ѡ##" . "###");
         $this->assertEquals(true, $board->isGameOver());
     }
 
     public function test_findOtherHeroes()
     {
-        $board = new GameBoard("#♥#" . "#♠#" . "#♣#");
+        $board = new Board("#♥#" . "#♠#" . "#♣#");
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 1), new Point(1, 2)),
             $board->findOtherHeroes());
@@ -58,7 +61,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBarriers()
     {
-        $board = new GameBoard("☼&#" . "123" . "♥♥♥");
+        $board = new Board("☼&#" . "123" . "♥♥♥");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1), new Point(0, 2),
                 new Point(1, 0), new Point(1, 1), new Point(1, 2),
@@ -68,7 +71,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_walls()
     {
-        $board = new GameBoard("###" . "☼##" . "☼##");
+        $board = new Board("###" . "☼##" . "☼##");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1)),
             $board->findWalls());
@@ -76,7 +79,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_ghosts()
     {
-        $board = new GameBoard("##&" . "##&" . "###");
+        $board = new Board("##&" . "##&" . "###");
         $this->assertEquals(
             array(new Point(2, 1), new Point(2, 2)),
             $board->findGhosts());
@@ -84,7 +87,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findTreasureBoxes()
     {
-        $board = new GameBoard("҉#҉" . "҉҉҉" . "҉#҉");
+        $board = new Board("҉#҉" . "҉҉҉" . "҉#҉");
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 2)),
             $board->findTreasureBoxes());
@@ -92,7 +95,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findPotions()
     {
-        $board = new GameBoard("123" . "45#" . "☻♠#");
+        $board = new Board("123" . "45#" . "☻♠#");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1), new Point(0, 2),
                 new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2)),
@@ -101,13 +104,13 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBlasts()
     {
-        $board = new GameBoard("###" . "###" . "##҉");
+        $board = new Board("###" . "###" . "##҉");
         $this->assertEquals(array(new Point(2, 0)), $board->findBlasts());
     }
 
     public function test_findPerks()
     {
-        $board = new GameBoard("#cr" . "#i+" . "###");
+        $board = new Board("#cr" . "#i+" . "###");
         $this->assertEquals(
             array(new Point(1, 1), new Point(1, 2),
                 new Point(2, 1), new Point(2, 2)),
@@ -117,7 +120,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_report()
     {
-        $board = new GameBoard("board=" .
+        $board = new Board("board=" .
             "☼☼☼☼☼☼☼☼☼" .
             "☼1 ♣   ♠☼" .
             "☼#2  &  ☼" .
@@ -137,7 +140,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             /*2*/ "☼x H ҉҉҉☼\n" .
             /*1*/ "☼& &    ☼\n" .
             /*0*/ "☼☼☼☼☼☼☼☼☼\n" .
-            /*012345678*/
+                /*012345678*/
             "\n" .
             "Hero at: [1,4]\n" .
             "Other heroes at: [3,7][4,3][5,5][7,5][7,7]\n" .
