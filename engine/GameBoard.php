@@ -4,13 +4,15 @@ class GameBoard
 {
 
     private array $elements;
+    private int $len;
     private int $size;
 
     public function __construct(array $supportedElements, string $message)
     {
         $message = str_replace("board=", "", $message);
         $this->initElementsArray($supportedElements, $message);
-        $this->size = sqrt(count($this->elements));
+        $this->len = count($this->elements);
+        $this->size = sqrt($this->len);
     }
 
     private function initElementsArray(array $supportedElements, string $message)
@@ -34,7 +36,7 @@ class GameBoard
     public function getAt(Point $pt): string
     {
         if (!$pt->isValid($this->size)) {
-            throw new InvalidArgumentException("invalid point " . $pt);
+            throw new InvalidArgumentException("invalid point: " . $pt);
         }
         return $this->elements[$this->pointToIndex($pt)];
     }
@@ -42,7 +44,7 @@ class GameBoard
     public function find(string...$wanted): array
     {
         $points = array();
-        for ($i = 0; $i < count($this->elements); $i++) {
+        for ($i = 0; $i < $this->len; $i++) {
             if (in_array($this->elements[$i], $wanted)) {
                 array_push($points, $this->indexToPoint($i));
             }
@@ -53,7 +55,7 @@ class GameBoard
 
     public function findFirst(string...$wanted): ?Point
     {
-        for ($i = 0; $i < count($this->elements); $i++) {
+        for ($i = 0; $i < $this->len; $i++) {
             if (in_array($this->elements[$i], $wanted)) {
                 return $this->indexToPoint($i);
             }

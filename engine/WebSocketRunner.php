@@ -29,9 +29,9 @@ class WebSocketRunner
     public function run(GameSolver $solver)
     {
         while (true) {
-            $msg_from_server = $this->client->receive();
-            $msg_to_server = $solver->answer($msg_from_server);
-            $this->client->send($msg_to_server);
+            $msgFromServer = $this->client->receive();
+            $msgToServer = $solver->answer($msgFromServer);
+            $this->client->send($msgToServer);
         }
     }
 }

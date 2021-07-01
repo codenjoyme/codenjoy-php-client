@@ -2,5 +2,5 @@
 
 interface GameSolver
 {
-    public function answer(string $board): string;
+    public function answer(string $message): string;
 }

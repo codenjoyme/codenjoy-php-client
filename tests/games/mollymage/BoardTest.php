@@ -61,7 +61,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBarriers()
     {
-        $board = new Board("☼&#" . "123" . "♥♥♥");
+        $board = new Board("☼&#" . "123" . "♥♠♣");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1), new Point(0, 2),
                 new Point(1, 0), new Point(1, 1), new Point(1, 2),

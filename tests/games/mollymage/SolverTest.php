@@ -15,12 +15,12 @@ class SolverTest extends PHPUnit\Framework\TestCase
 
     public function test_answer()
     {
-        $message = "board="
-            . "☼☼☼☼☼"
-            . "☼   ☼"
-            . "☼ ☺ ☼"
-            . "☼   ☼"
-            . "☼☼☼☼";
+        $message = "board=" .
+            "☼☼☼☼☼" .
+            "☼   ☼" .
+            "☼ ☺ ☼" .
+            "☼   ☼" .
+            "☼☼☼☼";
         $solver = new Solver();
         $this->assertEquals("ACT", $solver->answer($message));
     }

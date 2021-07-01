@@ -151,13 +151,13 @@ class BoardTest extends PHPUnit\Framework\TestCase
     public function test_isNear_invalidPoint()
     {
         $board = new GameBoard(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
-        $this->assertEquals(false, $board->isNear(new Point(-1,-1), "a"));
+        $this->assertEquals(false, $board->isNear(new Point(-1, -1), "a"));
     }
 
     public function test_isNear_notExistedElement()
     {
         $board = new GameBoard(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
-        $this->assertEquals(false, $board->isNear(new Point(1,1), "r"));
-        $this->assertEquals(false, $board->isNear(new Point(1,1), "x", "y", "z"));
+        $this->assertEquals(false, $board->isNear(new Point(1, 1), "r"));
+        $this->assertEquals(false, $board->isNear(new Point(1, 1), "x", "y", "z"));
     }
 }

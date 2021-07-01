@@ -37,8 +37,7 @@ class Board
 
     public function isGameOver(): bool
     {
-        $points = $this->board->find(Element::$elements['DEAD_HERO']);
-        return count($points) != 0;
+        return $this->board->findFirst(Element::$elements['DEAD_HERO']) != null;
     }
 
     public function findOtherHeroes(): array
@@ -59,7 +58,7 @@ class Board
         $points = array_merge($points, $this->findPotions());
         $points = array_merge($points, $this->findOtherHeroes());
         usort($points, array("Point", "compare"));
-        return $points;
+        return array_values(array_unique($points));
     }
 
     public function findWalls(): array
