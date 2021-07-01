@@ -1,0 +1,163 @@
+<?php
+
+require_once('../../engine/Board.php');
+require_once('../../engine/Point.php');
+
+class BoardTest extends PHPUnit\Framework\TestCase
+{
+
+    public function test_emptyMessage()
+    {
+        $board = new Board(array("a", "b", "c"), "");
+        $this->assertEquals("", $board->__toString());
+    }
+
+    public function test_emptySupportedElements()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Board(array(), "aaa" . "bbb" . "ccc");
+    }
+
+    public function test_validMessageAndSupportedElements()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals("aaa\nbbb\nccc\n", $board->__toString());
+    }
+
+    public function test_eraseMessagePrefix()
+    {
+        $board = new Board(array("a", "b", "c"), "board=" . "aaa" . "bbb" . "ccc");
+        $this->assertEquals("aaa\nbbb\nccc\n", $board->__toString());
+    }
+
+    public function test_messageWithUnsupportedElements()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Board(array("a", "b", "c"), "ab8c");
+    }
+
+    public function test_getSize()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(3, $board->getSize());
+    }
+
+    public function test_getAt()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals("c", $board->getAt(new Point(0, 0)));
+        $this->assertEquals("c", $board->getAt(new Point(1, 0)));
+        $this->assertEquals("c", $board->getAt(new Point(2, 0)));
+        $this->assertEquals("b", $board->getAt(new Point(0, 1)));
+        $this->assertEquals("b", $board->getAt(new Point(1, 1)));
+        $this->assertEquals("b", $board->getAt(new Point(2, 1)));
+        $this->assertEquals("a", $board->getAt(new Point(0, 2)));
+        $this->assertEquals("a", $board->getAt(new Point(1, 2)));
+        $this->assertEquals("a", $board->getAt(new Point(2, 2)));
+    }
+
+    public function test_getAt_invalidPoint()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $board->getAt(new Point(10, 10));
+    }
+
+    public function test_find()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(
+            array(new Point(0, 2), new Point(1, 2), new Point(2, 2)),
+            $board->find("a"));
+        $this->assertEquals(
+            array(new Point(0, 0), new Point(0, 1), new Point(1, 0),
+                new Point(1, 1), new Point(2, 0), new Point(2, 1)),
+            $board->find("b", "c"));
+    }
+
+    public function test_find_notExistedElement()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(array(), $board->find("d"));
+    }
+
+    public function test_findFirst()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(new Point(0, 0), $board->findFirst("c"));
+        $this->assertEquals(new Point(0, 1), $board->findFirst("b", "c"));
+        $this->assertEquals(new Point(0, 1), $board->findFirst("c", "b"));
+    }
+
+    public function test_findFirst_notExistedElement()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(null, $board->findFirst("d"));
+    }
+
+    public function test_isAt()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(true, $board->isAt(new Point(1, 2), "a"));
+        $this->assertEquals(false, $board->isAt(new Point(1, 2), "b"));
+        $this->assertEquals(false, $board->isAt(new Point(1, 2), "c"));
+    }
+
+    public function test_isAt_invalidPoint()
+    {
+        $board = new Board(array("a", "b", "c"), "aaa" . "bbb" . "ccc");
+        $this->assertEquals(false, $board->isAt(new Point(10, 10), "b"));
+    }
+
+    public function test_findNear()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(array("f", "d", "b", "h"), $board->findNear(new Point(1, 1)));
+    }
+
+    public function test_findNear_invalidPoint()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(array(), $board->findNear(new Point(-1, -1)));
+    }
+
+    public function test_countNear()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(2, $board->countNear(new Point(1, 1), "a", "b", "c", "d"));
+    }
+
+    public function test_countNear_invalidPoint()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(0, $board->countNear(new Point(-1, -1), "a", "b", "c", "d"));
+    }
+
+    public function test_countNear_notExistedElement()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(0, $board->countNear(new Point(1, 1), "r"));
+        $this->assertEquals(0, $board->countNear(new Point(1, 1), "x", "y", "z"));
+    }
+
+    public function test_isNear()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(false, $board->isNear(new Point(1, 1), "a"));
+        $this->assertEquals(true, $board->isNear(new Point(1, 1), "b"));
+        $this->assertEquals(true, $board->isNear(new Point(1, 1), "c", "d"));
+    }
+
+    public function test_isNear_invalidPoint()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(false, $board->isNear(new Point(-1,-1), "a"));
+    }
+
+    public function test_isNear_notExistedElement()
+    {
+        $board = new Board(array("a", "b", "c", "d", "e", "f", "g", "h", "i"), "abc" . "def" . "ghi");
+        $this->assertEquals(false, $board->isNear(new Point(1,1), "r"));
+        $this->assertEquals(false, $board->isNear(new Point(1,1), "x", "y", "z"));
+    }
+}
