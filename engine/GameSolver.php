@@ -1,6 +1,6 @@
 <?php
 
-interface Solver
+interface GameSolver
 {
     public function answer(string $board): string;
 }

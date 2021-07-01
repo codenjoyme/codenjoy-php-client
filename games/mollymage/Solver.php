@@ -1,20 +1,24 @@
 <?php
 
-class MollyMageSolver implements Solver
+namespace MollyMage;
+
+use GameSolver;
+
+class Solver implements GameSolver
 {
 
     public function answer(string $message): string
     {
-        $board = new MollyMageBoard($message);
-        print "Board \n" . $board->__toString() . "\n";
+        $board = new Board($message);
+        print "GameBoard \n" . $board->__toString() . "\n";
         $action = $this->nextAction($board);
         print "\nAnswer: " . $action . "\n";
         print "-------------------------------------------------------------" . "\n";
         return $action;
     }
 
-    private function nextAction(MollyMageBoard $board): string
+    private function nextAction(Board $board): string
     {
-        return MollyMageAction::ACT;
+        return Action::ACT;
     }
 }

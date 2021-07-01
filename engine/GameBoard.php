@@ -1,6 +1,6 @@
 <?php
 
-class Board
+class GameBoard
 {
 
     private array $elements;

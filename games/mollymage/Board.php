@@ -1,18 +1,24 @@
 <?php
 
-class MollyMageBoard
+namespace MollyMage;
+
+use GameBoard;
+use Point;
+use UnexpectedValueException;
+
+class Board
 {
-    private Board $board;
+    private GameBoard $board;
 
     public function __construct(string $message)
     {
-        $this->board = new Board(MollyMageElement::$elements, $message);
+        $this->board = new GameBoard(Element::$elements, $message);
     }
 
     public function getAt(Point $pt): string
     {
         if (!$pt->isValid($this->board->getSize())) {
-            return MollyMageElement::$elements['WALL'];
+            return Element::$elements['WALL'];
         }
         return $this->board->getAt($pt);
     }
@@ -20,9 +26,9 @@ class MollyMageBoard
     public function findHero(): Point
     {
         $points = $this->board->find(
-            MollyMageElement::$elements['HERO'],
-            MollyMageElement::$elements['POTION_HERO'],
-            MollyMageElement::$elements['DEAD_HERO']);
+            Element::$elements['HERO'],
+            Element::$elements['POTION_HERO'],
+            Element::$elements['DEAD_HERO']);
         if (count($points) == 0) {
             throw new UnexpectedValueException("hero element has not been found");
         }
@@ -31,16 +37,16 @@ class MollyMageBoard
 
     public function isGameOver(): bool
     {
-        $points = $this->board->find(MollyMageElement::$elements['DEAD_HERO']);
+        $points = $this->board->find(Element::$elements['DEAD_HERO']);
         return count($points) != 0;
     }
 
     public function findOtherHeroes(): array
     {
         return $this->board->find(
-            MollyMageElement::$elements['OTHER_HERO'],
-            MollyMageElement::$elements['OTHER_POTION_HERO'],
-            MollyMageElement::$elements['OTHER_DEAD_HERO'],
+            Element::$elements['OTHER_HERO'],
+            Element::$elements['OTHER_POTION_HERO'],
+            Element::$elements['OTHER_DEAD_HERO'],
         );
     }
 
@@ -58,34 +64,34 @@ class MollyMageBoard
 
     public function findWalls(): array
     {
-        return $this->board->find(MollyMageElement::$elements['WALL']);
+        return $this->board->find(Element::$elements['WALL']);
     }
 
     public function findGhosts(): array
     {
-        return $this->board->find(MollyMageElement::$elements['GHOST']);
+        return $this->board->find(Element::$elements['GHOST']);
     }
 
     public function findTreasureBoxes(): array
     {
-        return $this->board->find(MollyMageElement::$elements['TREASURE_BOX']);
+        return $this->board->find(Element::$elements['TREASURE_BOX']);
     }
 
     public function findPotions(): array
     {
         return $this->board->find(
-            MollyMageElement::$elements['POTION_TIMER_1'],
-            MollyMageElement::$elements['POTION_TIMER_2'],
-            MollyMageElement::$elements['POTION_TIMER_3'],
-            MollyMageElement::$elements['POTION_TIMER_4'],
-            MollyMageElement::$elements['POTION_TIMER_5'],
-            MollyMageElement::$elements['POTION_HERO'],
-            MollyMageElement::$elements['OTHER_POTION_HERO']);
+            Element::$elements['POTION_TIMER_1'],
+            Element::$elements['POTION_TIMER_2'],
+            Element::$elements['POTION_TIMER_3'],
+            Element::$elements['POTION_TIMER_4'],
+            Element::$elements['POTION_TIMER_5'],
+            Element::$elements['POTION_HERO'],
+            Element::$elements['OTHER_POTION_HERO']);
     }
 
     public function findBlasts(): array
     {
-        return $this->board->find(MollyMageElement::$elements['BOOM']);
+        return $this->board->find(Element::$elements['BOOM']);
     }
 
     public function predictFutureBlasts(): array
@@ -97,10 +103,10 @@ class MollyMageBoard
     public function findPerks(): array
     {
         return $this->board->find(
-            MollyMageElement::$elements['POTION_COUNT_INCREASE'],
-            MollyMageElement::$elements['POTION_REMOTE_CONTROL'],
-            MollyMageElement::$elements['POTION_IMMUNE'],
-            MollyMageElement::$elements['POTION_BLAST_RADIUS_INCREASE']);
+            Element::$elements['POTION_COUNT_INCREASE'],
+            Element::$elements['POTION_REMOTE_CONTROL'],
+            Element::$elements['POTION_IMMUNE'],
+            Element::$elements['POTION_BLAST_RADIUS_INCREASE']);
     }
 
     public function __toString(): string

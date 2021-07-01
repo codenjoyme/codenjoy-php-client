@@ -1,56 +1,56 @@
 <?php
 
-require_once('../../../engine/Solver.php');
-require_once('../../../engine/Board.php');
+require_once('../../../engine/GameSolver.php');
+require_once('../../../engine/GameBoard.php');
 require_once('../../../engine/Point.php');
-require_once('../../../games/mollymage/MollyMageSolver.php');
-require_once('../../../games/mollymage/MollyMageBoard.php');
-require_once('../../../games/mollymage/MollyMageElement.php');
-require_once('../../../games/mollymage/MollyMageAction.php');
+require_once('../../../games/mollymage/Solver.php');
+require_once('../../../games/mollymage/Board.php');
+require_once('../../../games/mollymage/Element.php');
+require_once('../../../games/mollymage/Action.php');
 
-class MollyMageBoardTest extends PHPUnit\Framework\TestCase
+class BoardTest extends PHPUnit\Framework\TestCase
 {
 
     public function test_getAt_invalidPoint()
     {
-        $board = new MollyMageBoard("###" . "###" . "###");
+        $board = new GameBoard("###" . "###" . "###");
         $this->assertEquals(MollyMageElement::$elements['WALL'], $board->getAt(new Point(-1, -1)));
     }
 
     public function test_findHero()
     {
-        $board = new MollyMageBoard("#☺#" . "###" . "###");
+        $board = new GameBoard("#☺#" . "###" . "###");
         $this->assertEquals(new Point(1, 2), $board->findHero());
 
-        $board = new MollyMageBoard("###" . "#☻#" . "###");
+        $board = new GameBoard("###" . "#☻#" . "###");
         $this->assertEquals(new Point(1, 1), $board->findHero());
 
-        $board = new MollyMageBoard("###" . "###" . "#Ѡ#");
+        $board = new GameBoard("###" . "###" . "#Ѡ#");
         $this->assertEquals(new Point(1, 0), $board->findHero());
 
-        $board = new MollyMageBoard("Ѡ☺☻" . "###" . "###");
+        $board = new GameBoard("Ѡ☺☻" . "###" . "###");
         $this->assertEquals(new Point(0, 2), $board->findHero());
     }
 
     public function test_findHero_noResult()
     {
         $this->expectException(UnexpectedValueException::class);
-        $board = new MollyMageBoard("###" . "###" . "###");
+        $board = new GameBoard("###" . "###" . "###");
         $board->findHero();
     }
 
     public function test_isGameOver()
     {
-        $board = new MollyMageBoard("###" . "##☺" . "###");
+        $board = new GameBoard("###" . "##☺" . "###");
         $this->assertEquals(false, $board->isGameOver());
 
-        $board = new MollyMageBoard("###" . "Ѡ##" . "###");
+        $board = new GameBoard("###" . "Ѡ##" . "###");
         $this->assertEquals(true, $board->isGameOver());
     }
 
     public function test_findOtherHeroes()
     {
-        $board = new MollyMageBoard("#♥#" . "#♠#" . "#♣#");
+        $board = new GameBoard("#♥#" . "#♠#" . "#♣#");
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 1), new Point(1, 2)),
             $board->findOtherHeroes());
@@ -58,7 +58,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBarriers()
     {
-        $board = new MollyMageBoard("☼&#" . "123" . "♥♥♥");
+        $board = new GameBoard("☼&#" . "123" . "♥♥♥");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1), new Point(0, 2),
                 new Point(1, 0), new Point(1, 1), new Point(1, 2),
@@ -68,7 +68,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_walls()
     {
-        $board = new MollyMageBoard("###" . "☼##" . "☼##");
+        $board = new GameBoard("###" . "☼##" . "☼##");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1)),
             $board->findWalls());
@@ -76,7 +76,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_ghosts()
     {
-        $board = new MollyMageBoard("##&" . "##&" . "###");
+        $board = new GameBoard("##&" . "##&" . "###");
         $this->assertEquals(
             array(new Point(2, 1), new Point(2, 2)),
             $board->findGhosts());
@@ -84,7 +84,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findTreasureBoxes()
     {
-        $board = new MollyMageBoard("҉#҉" . "҉҉҉" . "҉#҉");
+        $board = new GameBoard("҉#҉" . "҉҉҉" . "҉#҉");
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 2)),
             $board->findTreasureBoxes());
@@ -92,7 +92,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findPotions()
     {
-        $board = new MollyMageBoard("123" . "45#" . "☻♠#");
+        $board = new GameBoard("123" . "45#" . "☻♠#");
         $this->assertEquals(
             array(new Point(0, 0), new Point(0, 1), new Point(0, 2),
                 new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2)),
@@ -101,13 +101,13 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBlasts()
     {
-        $board = new MollyMageBoard("###" . "###" . "##҉");
+        $board = new GameBoard("###" . "###" . "##҉");
         $this->assertEquals(array(new Point(2, 0)), $board->findBlasts());
     }
 
     public function test_findPerks()
     {
-        $board = new MollyMageBoard("#cr" . "#i+" . "###");
+        $board = new GameBoard("#cr" . "#i+" . "###");
         $this->assertEquals(
             array(new Point(1, 1), new Point(1, 2),
                 new Point(2, 1), new Point(2, 2)),
@@ -117,7 +117,7 @@ class MollyMageBoardTest extends PHPUnit\Framework\TestCase
 
     public function test_report()
     {
-        $board = new MollyMageBoard("board=" .
+        $board = new GameBoard("board=" .
             "☼☼☼☼☼☼☼☼☼" .
             "☼1 ♣   ♠☼" .
             "☼#2  &  ☼" .

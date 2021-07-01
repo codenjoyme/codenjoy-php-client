@@ -26,7 +26,7 @@ class WebSocketRunner
             $matches['code']);
     }
 
-    public function run(Solver $solver)
+    public function run(GameSolver $solver)
     {
         while (true) {
             $msg_from_server = $this->client->receive();

@@ -1,6 +1,8 @@
 <?php
 
-abstract class MollyMageElement
+namespace MollyMage;
+
+abstract class Element
 {
     static array $elements = array(
     /// your Molly

@@ -1,7 +1,8 @@
 <?php
 
+namespace MollyMage;
 
-class MollyMageAction
+class Action
 {
     const LEFT = "LEFT";
     const RIGHT = "RIGHT";
