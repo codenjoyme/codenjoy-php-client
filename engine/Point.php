@@ -23,7 +23,7 @@ class Point
 
     public function isValid(int $boardSize): bool
     {
-        return ($this->x >= 0 && $this->x <= $boardSize) && ($this->y >= 0 && $this->y <= $boardSize);
+        return ($this->x >= 0 && $this->x < $boardSize) && ($this->y >= 0 && $this->y < $boardSize);
     }
 
     public static function compare($a, $b): int
