@@ -12,7 +12,8 @@ echo [0m
 echo on
 
 chcp %CODE_PAGE%
-call %PHP_HOME%/php index.php %GAME_TO_RUN% %BOARD_URL%
+SET PATH=%CD%\.php;%PATH%
+call php index.php %GAME_TO_RUN% %BOARD_URL%
 
 call :ask
 

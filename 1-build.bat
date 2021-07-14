@@ -9,10 +9,9 @@ echo        !                   Now we are building php client...               
 echo        +-------------------------------------------------------------------------+
 echo [0m
 echo on
-
+SET PATH=%CD%\.php;%PATH%
 call php -v
-
-%PHP_HOME%/php composer.phar u
+call php composer.phar u
 
 @call :ask
 
