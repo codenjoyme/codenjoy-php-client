@@ -22,13 +22,26 @@ abstract class Element
         // This is what other heroes looks like.
         "OTHER_HERO" => '♥',
 
-        // This is if player is sitting on own potion.
+        // This is if other hero is sitting on own potion.
         "OTHER_POTION_HERO" => '♠',
 
-        // Enemy corpse (it will disappear shortly,
+        // Other hero corpse (it will disappear shortly,
         // right on the next move).
         // If you've done it you'll get score points.
         "OTHER_DEAD_HERO" => '♣',
+
+    /// enemy players heroes
+
+        // This is what enemy heroes looks like.
+        "ENEMY_HERO" => '♡',
+
+        // This is if enemy hero is sitting on own potion.
+        "ENEMY_POTION_HERO" => '♤',
+
+        // Enemy hero corpse (it will disappear shortly,
+        // right on the next move).
+        // If you've done it you'll get score points.
+        "ENEMY_DEAD_HERO" => '♧',
 
     /// the potions
         // After Molly set the potion, the timer starts (5 ticks).
