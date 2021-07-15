@@ -6,8 +6,11 @@ use GameBoard;
 use Point;
 use UnexpectedValueException;
 
+define("BLAST_RANGE", 3);
+
 class Board
 {
+
     private GameBoard $board;
 
     public function __construct(string $message)
@@ -106,8 +109,39 @@ class Board
 
     public function predictFutureBlasts(): array
     {
-        // TODO: implement
-        return array();
+        $blasts = array();
+        foreach ($this->board->find(Element::$elements['POTION_TIMER_1']) as $potion) {
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepLeft($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepRight($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepUp($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepDown($pt);
+            }));
+        }
+        return $blasts;
+    }
+
+    public function predictBlastsForOneSide($pt, $nextStep): array
+    {
+        $barriers = $this->findBarriers();
+        $points = array();
+        for ($i = 1; $i <= BLAST_RANGE; $i++) {
+            $pt = $nextStep($pt);
+            if (!$pt->isValid($this->board->getSize())) {
+                break;
+            }
+            if (in_array($pt, $barriers)) {
+                break;
+            }
+            array_push($points, $pt);
+        }
+        return $points;
     }
 
     public function findPerks(): array

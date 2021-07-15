@@ -35,4 +35,24 @@ class Point
     {
         return sprintf("[%d,%d]", $this->x, $this->y);
     }
+
+    public static function stepRight(Point $pt): Point
+    {
+        return new Point($pt->x() + 1, $pt->y());
+    }
+
+    public static function stepLeft(Point $pt): Point
+    {
+        return new Point($pt->x() - 1, $pt->y());
+    }
+
+    public static function stepUp(Point $pt): Point
+    {
+        return new Point($pt->x(), $pt->y() + 1);
+    }
+
+    public static function stepDown(Point $pt): Point
+    {
+        return new Point($pt->x(), $pt->y() - 1);
+    }
 }

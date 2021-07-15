@@ -156,6 +156,6 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "Ghosts at: [1,1][3,1][5,6]\n" .
             "Potions at: [1,7][2,6][3,5][4,4][7,3][7,5][7,7]\n" .
             "Blasts at: [5,2][6,2][7,2]\n" .
-            "Expected blasts at: ", $board->__toString());
+            "Expected blasts at: [2,7]", $board->__toString());
     }
 }
