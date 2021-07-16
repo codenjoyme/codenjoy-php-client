@@ -59,6 +59,14 @@ class BoardTest extends PHPUnit\Framework\TestCase
             $board->findOtherHeroes());
     }
 
+    public function test_findEnemyHeroes()
+    {
+        $board = new Board("#♡#" . "#♤#" . "#♧#");
+        $this->assertEquals(
+            array(new Point(1, 0), new Point(1, 1), new Point(1, 2)),
+            $board->findEnemyHeroes());
+    }
+
     public function test_findBarriers()
     {
         $board = new Board("☼&#" . "123" . "♥♠♣");
@@ -126,7 +134,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "☼#2  &  ☼" .
             "☼# 3 ♣ ♠☼" .
             "☼☺  4   ☼" .
-            "☼   ♥ H☻☼" .
+            "☼   ♡ H☻☼" .
             "☼x H ҉҉҉☼" .
             "☼& &    ☼" .
             "☼☼☼☼☼☼☼☼☼");
@@ -136,17 +144,18 @@ class BoardTest extends PHPUnit\Framework\TestCase
             /*6*/ "☼#2  &  ☼\n" .
             /*5*/ "☼# 3 ♣ ♠☼\n" .
             /*4*/ "☼☺  4   ☼\n" .
-            /*3*/ "☼   ♥ H☻☼\n" .
+            /*3*/ "☼   ♡ H☻☼\n" .
             /*2*/ "☼x H ҉҉҉☼\n" .
             /*1*/ "☼& &    ☼\n" .
             /*0*/ "☼☼☼☼☼☼☼☼☼\n" .
                 /*012345678*/
             "\n" .
             "Hero at: [1,4]\n" .
-            "Other heroes at: [3,7][4,3][5,5][7,5][7,7]\n" .
+            "Other heroes at: [3,7][5,5][7,5][7,7]\n" .
+            "Enemy heroes at: [4,3]\n" .
             "Ghosts at: [1,1][3,1][5,6]\n" .
             "Potions at: [1,7][2,6][3,5][4,4][7,3][7,5][7,7]\n" .
             "Blasts at: [5,2][6,2][7,2]\n" .
-            "Expected blasts at: ", $board->__toString());
+            "Expected blasts at: [2,7]", $board->__toString());
     }
 }

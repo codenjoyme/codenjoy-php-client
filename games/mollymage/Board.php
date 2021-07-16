@@ -6,8 +6,11 @@ use GameBoard;
 use Point;
 use UnexpectedValueException;
 
+define("BLAST_RANGE", 3);
+
 class Board
 {
+
     private GameBoard $board;
 
     public function __construct(string $message)
@@ -49,6 +52,15 @@ class Board
         );
     }
 
+    public function findEnemyHeroes(): array
+    {
+        return $this->board->find(
+            Element::$elements['ENEMY_HERO'],
+            Element::$elements['ENEMY_POTION_HERO'],
+            Element::$elements['ENEMY_DEAD_HERO'],
+        );
+    }
+
     public function findBarriers(): array
     {
         $points = array();
@@ -57,6 +69,7 @@ class Board
         $points = array_merge($points, $this->findTreasureBoxes());
         $points = array_merge($points, $this->findPotions());
         $points = array_merge($points, $this->findOtherHeroes());
+        $points = array_merge($points, $this->findEnemyHeroes());
         usort($points, array("Point", "compare"));
         return array_values(array_unique($points));
     }
@@ -85,7 +98,8 @@ class Board
             Element::$elements['POTION_TIMER_4'],
             Element::$elements['POTION_TIMER_5'],
             Element::$elements['POTION_HERO'],
-            Element::$elements['OTHER_POTION_HERO']);
+            Element::$elements['OTHER_POTION_HERO'],
+            Element::$elements['ENEMY_POTION_HERO']);
     }
 
     public function findBlasts(): array
@@ -95,8 +109,39 @@ class Board
 
     public function predictFutureBlasts(): array
     {
-        // TODO: implement
-        return array();
+        $blasts = array();
+        foreach ($this->board->find(Element::$elements['POTION_TIMER_1']) as $potion) {
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepLeft($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepRight($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepUp($pt);
+            }));
+            $blasts = array_merge($blasts, $this->predictBlastsForOneSide($potion, function ($pt) {
+                return Point::stepDown($pt);
+            }));
+        }
+        return $blasts;
+    }
+
+    public function predictBlastsForOneSide($pt, $nextStep): array
+    {
+        $barriers = $this->findBarriers();
+        $points = array();
+        for ($i = 1; $i <= BLAST_RANGE; $i++) {
+            $pt = $nextStep($pt);
+            if (!$pt->isValid($this->board->getSize())) {
+                break;
+            }
+            if (in_array($pt, $barriers)) {
+                break;
+            }
+            array_push($points, $pt);
+        }
+        return $points;
     }
 
     public function findPerks(): array
@@ -113,6 +158,7 @@ class Board
         return $this->board->__toString() .
             "\nHero at: " . $this->findHero() .
             "\nOther heroes at: " . implode($this->findOtherHeroes()) .
+            "\nEnemy heroes at: " . implode($this->findEnemyHeroes()) .
             "\nGhosts at: " . implode($this->findGhosts()) .
             "\nPotions at: " . implode($this->findPotions()) .
             "\nBlasts at: " . implode($this->findBlasts()) .
