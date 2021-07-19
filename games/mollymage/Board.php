@@ -131,7 +131,7 @@ class Board
     {
         $barriers = $this->findBarriers();
         $points = array();
-        for ($i = 1; $i <= BLAST_RANGE; $i++) {
+        for ($i = 0; $i < BLAST_RANGE; $i++) {
             $pt = $nextStep($pt);
             if (!$pt->isValid($this->board->getSize())) {
                 break;
