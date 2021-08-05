@@ -150,7 +150,8 @@ class Board
             Element::$elements['POTION_COUNT_INCREASE'],
             Element::$elements['POTION_REMOTE_CONTROL'],
             Element::$elements['POTION_IMMUNE'],
-            Element::$elements['POTION_BLAST_RADIUS_INCREASE']);
+            Element::$elements['POTION_BLAST_RADIUS_INCREASE'],
+            Element::$elements['POISON_THROWER']);
     }
 
     public function __toString(): string
