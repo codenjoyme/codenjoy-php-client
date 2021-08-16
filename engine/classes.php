@@ -1,5 +1,6 @@
 <?php
 
+include 'engine/Direction.php';
 include 'engine/GameBoard.php';
 include 'engine/GameSolver.php';
 include 'engine/Point.php';

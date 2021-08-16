@@ -3,6 +3,7 @@
 namespace MollyMage;
 
 use GameSolver;
+use Direction;
 
 class Solver implements GameSolver
 {
@@ -14,12 +15,13 @@ class Solver implements GameSolver
         $action = $this->nextAction($board);
         print "\nAnswer: " . $action . "\n";
         print "-------------------------------------------------------------\n";
-        return $action;
+        return $action->__toString();
     }
 
-    private function nextAction(Board $board): string
+    private function nextAction(Board $board): Direction
     {
         // TODO: write your code here
-        return Action::ACT;
+        global $ACT;
+        return $ACT;
     }
 }
