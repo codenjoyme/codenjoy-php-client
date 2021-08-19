@@ -111,9 +111,15 @@ abstract class Element
         "POTION_IMMUNE" => 'i',
 
         // Hero can shoot by poison cloud
+        // Using ACT(1)
         // Temporary.
         "POISON_THROWER" => 'T',
-        
+
+        // Hero can explode all potions on the field
+        // Using: ACT(2)
+        // Temporary.
+        "POTION_EXPLODER" => 'A',
+
     /// a void
         // This is the only place where you can move your Molly.
         "NONE" => ' '

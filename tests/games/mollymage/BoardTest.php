@@ -118,10 +118,11 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findPerks()
     {
-        $board = new Board("#cr" . "#i+" . "#T#");
+        $board = new Board("#cr" . "#i+" . "#TA");
+        // todo fix download-env and check this test
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 1), new Point(1, 2),
-                new Point(2, 1), new Point(2, 2)),
+                new Point(2, 0), new Point(2, 1), new Point(2, 2)),
             $board->findPerks());
 
     }
