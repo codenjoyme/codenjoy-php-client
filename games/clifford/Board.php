@@ -36,6 +36,8 @@ class Board
             Element::$elements['HERO_PIPE_LEFT'],
             Element::$elements['HERO_PIPE_RIGHT'],
             Element::$elements['HERO_DIE'],
+            Element::$elements['HERO_PIT_LEFT'],
+            Element::$elements['HERO_PIT_RIGHT'],
 
             Element::$elements['HERO_MASK_LEFT'],
             Element::$elements['HERO_MASK_RIGHT'],
@@ -46,7 +48,9 @@ class Board
             Element::$elements['HERO_MASK_FALL_RIGHT'],
             Element::$elements['HERO_MASK_PIPE_LEFT'],
             Element::$elements['HERO_MASK_PIPE_RIGHT'],
-            Element::$elements['HERO_MASK_DIE']);
+            Element::$elements['HERO_MASK_DIE'],
+            Element::$elements['HERO_MASK_PIT_LEFT'],
+            Element::$elements['HERO_MASK_PIT_RIGHT']);
         if (count($points) == 0) {
             throw new UnexpectedValueException("hero element has not been found");
         }
@@ -66,8 +70,10 @@ class Board
             Element::$elements['OTHER_HERO_FALL_RIGHT'],
             Element::$elements['OTHER_HERO_PIPE_LEFT'],
             Element::$elements['OTHER_HERO_PIPE_RIGHT'],
-            Element::$elements['OTHER_HERO_MASK_DIE'],
+            Element::$elements['OTHER_HERO_PIT_LEFT'],
+            Element::$elements['OTHER_HERO_PIT_RIGHT'],
 
+            Element::$elements['OTHER_HERO_MASK_DIE'],
             Element::$elements['OTHER_HERO_MASK_CRACK_LEFT'],
             Element::$elements['OTHER_HERO_MASK_CRACK_RIGHT'],
             Element::$elements['OTHER_HERO_MASK_LADDER'],
@@ -76,8 +82,9 @@ class Board
             Element::$elements['OTHER_HERO_MASK_FALL_LEFT'],
             Element::$elements['OTHER_HERO_MASK_FALL_RIGHT'],
             Element::$elements['OTHER_HERO_MASK_PIPE_LEFT'],
-            Element::$elements['OTHER_HERO_MASK_PIPE_RIGHT']
-        );
+            Element::$elements['OTHER_HERO_MASK_PIPE_RIGHT'],
+            Element::$elements['OTHER_HERO_MASK_PIT_LEFT'],
+            Element::$elements['OTHER_HERO_MASK_PIT_RIGHT']);
     }
 
     public function findEnemyHeroes(): array
@@ -93,8 +100,10 @@ class Board
             Element::$elements['ENEMY_HERO_FALL_RIGHT'],
             Element::$elements['ENEMY_HERO_PIPE_LEFT'],
             Element::$elements['ENEMY_HERO_PIPE_RIGHT'],
-            Element::$elements['ENEMY_HERO_MASK_DIE'],
+            Element::$elements['ENEMY_HERO_PIT_LEFT'],
+            Element::$elements['ENEMY_HERO_PIT_RIGHT'],
 
+            Element::$elements['ENEMY_HERO_MASK_DIE'],
             Element::$elements['ENEMY_HERO_MASK_CRACK_LEFT'],
             Element::$elements['ENEMY_HERO_MASK_CRACK_RIGHT'],
             Element::$elements['ENEMY_HERO_MASK_LADDER'],
@@ -103,8 +112,9 @@ class Board
             Element::$elements['ENEMY_HERO_MASK_FALL_LEFT'],
             Element::$elements['ENEMY_HERO_MASK_FALL_RIGHT'],
             Element::$elements['ENEMY_HERO_MASK_PIPE_LEFT'],
-            Element::$elements['ENEMY_HERO_MASK_PIPE_RIGHT']
-        );
+            Element::$elements['ENEMY_HERO_MASK_PIPE_RIGHT'],
+            Element::$elements['ENEMY_HERO_MASK_PIT_LEFT'],
+            Element::$elements['ENEMY_HERO_MASK_PIT_RIGHT']);
     }
 
     public function findRobbers(): array
@@ -113,6 +123,8 @@ class Board
             Element::$elements['ROBBER_LADDER'],
             Element::$elements['ROBBER_LEFT'],
             Element::$elements['ROBBER_RIGHT'],
+            Element::$elements['ROBBER_FALL_LEFT'],
+            Element::$elements['ROBBER_FALL_RIGHT'],
             Element::$elements['ROBBER_PIPE_LEFT'],
             Element::$elements['ROBBER_PIPE_RIGHT'],
             Element::$elements['ROBBER_PIT_LEFT'],
