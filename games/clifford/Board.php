@@ -170,6 +170,27 @@ class Board
         return $this->board->find(Element::$elements['MASK_POTION']);
     }
 
+    public function findDoors(): array
+    {
+        return $this->board->find(
+            Element::$elements['OPENED_DOOR_GOLD'],
+            Element::$elements['OPENED_DOOR_SILVER'],
+            Element::$elements['OPENED_DOOR_BRONZE'],
+            Element::$elements['CLOSED_DOOR_GOLD'],
+            Element::$elements['CLOSED_DOOR_SILVER'],
+            Element::$elements['CLOSED_DOOR_BRONZE']
+        );
+    }
+
+    public function findKeys(): array
+    {
+        return $this->board->find(
+            Element::$elements['KEY_GOLD'],
+            Element::$elements['KEY_SILVER'],
+            Element::$elements['KEY_BRONZE']
+        );
+    }
+
     public function __toString(): string
     {
         return $this->board->__toString() .
@@ -177,6 +198,7 @@ class Board
             "\nOther heroes at: " . implode($this->findOtherHeroes()) .
             "\nEnemy heroes at: " . implode($this->findEnemyHeroes()) .
             "\nRobbers at: " . implode($this->findRobbers()) .
-            "\nMask potions at: " . implode($this->findPotions());
+            "\nMask potions at: " . implode($this->findPotions()) .
+            "\nKeys at: " . implode($this->findKeys());
     }
 }

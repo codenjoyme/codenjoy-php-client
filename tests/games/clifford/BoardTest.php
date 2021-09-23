@@ -162,26 +162,39 @@ class BoardTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(array(new Point(2, 2)), $board->findPotions());
     }
 
+    public function test_findDoors()
+    {
+        $board = new Board("⍙⍚⍜" . "⍍⌺⌼" . "###");
+        $this->assertEquals([new Point(0, 1), new Point(0, 2), new Point(1, 1),
+            new Point(1, 2), new Point(2, 1), new Point(2, 2)], $board->findDoors());
+    }
+
+    public function test_findKeys()
+    {
+        $board = new Board("✦✼⍟" . "###" . "###");
+        $this->assertEquals([new Point(0, 2), new Point(1, 2), new Point(2, 2)], $board->findKeys());
+    }
+
     public function test_report()
     {
         $board = new Board("board=" .
             "☼☼☼☼☼☼☼☼☼" .
             "☼ ►*## \$☼" .
-            "☼ H ⧒⧒  ☼" .
-            "☼ H  1  ☼" .
+            "☼ H ⧒⧒ ✼☼" .
+            "☼ H  1 ⍍☼" .
             "☼S ⊐ &  ☼" .
-            "☼   ~~~ ☼" .
-            "☼Z3   ⊏ ☼" .
+            "☼ ✦ ~~~ ☼" .
+            "☼Z3 ⌺ ⊏ ☼" .
             "☼ @@ ⍈Q ☼" .
             "☼☼☼☼☼☼☼☼☼");
         $this->assertEquals("" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "☼ ►*## \$☼\n" .
-            "☼ H ⧒⧒  ☼\n" .
-            "☼ H  1  ☼\n" .
+            "☼ H ⧒⧒ ✼☼\n" .
+            "☼ H  1 ⍍☼\n" .
             "☼S ⊐ &  ☼\n" .
-            "☼   ~~~ ☼\n" .
-            "☼Z3   ⊏ ☼\n" .
+            "☼ ✦ ~~~ ☼\n" .
+            "☼Z3 ⌺ ⊏ ☼\n" .
             "☼ @@ ⍈Q ☼\n" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "\n" .
@@ -189,6 +202,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "Other heroes at: [1,2][3,4][6,2]\n" .
             "Enemy heroes at: [4,6][5,6]\n" .
             "Robbers at: [5,1][6,1]\n" .
-            "Mask potions at: [1,4]", $board->__toString());
+            "Mask potions at: [1,4]\n" .
+            "Keys at: [2,3][7,6]", $board->__toString());
     }
 }

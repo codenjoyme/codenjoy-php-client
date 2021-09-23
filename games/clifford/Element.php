@@ -118,6 +118,19 @@ abstract class Element
         "ROBBER_PIT_LEFT" => '⍇',
         "ROBBER_PIT_RIGHT" => '⍈',
 
+        # Ворота
+        "OPENED_DOOR_GOLD" => '⍙',
+        "OPENED_DOOR_SILVER" => '⍚',
+        "OPENED_DOOR_BRONZE" => '⍜',
+
+        "CLOSED_DOOR_GOLD" => '⍍',
+        "CLOSED_DOOR_SILVER" => '⌺',
+        "CLOSED_DOOR_BRONZE" => '⌼',
+
+        "KEY_GOLD" => '✦',
+        "KEY_SILVER" => '✼',
+        "KEY_BRONZE" => '⍟',
+
         "LADDER" => 'H',              # Лестница - по ней можно перемещаться по уровню
         "PIPE" => '~',                # Труба - по ней так же можно перемещаться по уровню, но только горизонтально
 
