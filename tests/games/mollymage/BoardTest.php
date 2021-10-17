@@ -61,7 +61,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findEnemyHeroes()
     {
-        $board = new Board("#♡#" . "#♤#" . "#♧#");
+        $board = new Board("#ö#" . "#Ö#" . "#ø#");
         $this->assertEquals(
             array(new Point(1, 0), new Point(1, 1), new Point(1, 2)),
             $board->findEnemyHeroes());
@@ -134,7 +134,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "☼#2  &  ☼" .
             "☼# 3 ♣ ♠☼" .
             "☼☺  4   ☼" .
-            "☼   ♡ H☻☼" .
+            "☼   ö H☻☼" .
             "☼x H ҉҉҉☼" .
             "☼& &    ☼" .
             "☼☼☼☼☼☼☼☼☼");
@@ -144,7 +144,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             /*6*/ "☼#2  &  ☼\n" .
             /*5*/ "☼# 3 ♣ ♠☼\n" .
             /*4*/ "☼☺  4   ☼\n" .
-            /*3*/ "☼   ♡ H☻☼\n" .
+            /*3*/ "☼   ö H☻☼\n" .
             /*2*/ "☼x H ҉҉҉☼\n" .
             /*1*/ "☼& &    ☼\n" .
             /*0*/ "☼☼☼☼☼☼☼☼☼\n" .
