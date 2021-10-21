@@ -1,6 +1,7 @@
 .php/
-.idea/
-*.iml
 composer.phar
 vendor/
 .phpunit.result.cache
+
+# macOS
+.DS_Store
