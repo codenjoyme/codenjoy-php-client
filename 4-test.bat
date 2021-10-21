@@ -1,25 +1,46 @@
-if "%GAME_TO_RUN%"=="" (
-    call 0-settings.bat
-)
+call 0-settings.bat
 
-chcp %CODE_PAGE%
-SET PATH=%CD%\.php;%CD%\vendor\bin;%PATH%
+echo off
+echo        [44;93m+----------------------------------------+[0m
+echo        [44;93m!       Now we are starting TESTS...     ![0m
+echo        [44;93m+----------------------------------------+[0m
+echo on
 
-@echo        +-------------------------------------------------------------------------+
-@echo        !                       Now we are starting TESTS...                      !
-@echo        +-------------------------------------------------------------------------+
+call :sep
 
 cd tests\engine
+call %PHPUNIT% --no-configuration %CD%\
+cd %ROOT%
 
-call phpunit --no-configuration %CD%\
-cd ..\games\%GAME_TO_RUN%
-call phpunit --no-configuration %CD%\
-  
+call :sep
+
+cd tests\games\clifford
+call %PHPUNIT% --no-configuration %CD%\
+cd %ROOT%
+
+call :sep
+
+cd tests\games\mollymage
+call %PHPUNIT% --no-configuration %CD%\
+cd %ROOT%
+
+call :sep
+
 call :ask
 
 goto :eof
 
 :ask
-    echo Press any key to continue
+    echo off
+    echo        [44;93m+---------------------------------+[0m
+    echo        [44;93m!    Press any key to continue    ![0m
+    echo        [44;93m+---------------------------------+[0m
+    echo on
     pause >nul
+goto :eof
+
+:sep
+    echo off
+    echo [44;93m---------------------------------------------------------------------------------------[0m
+    echo on
 goto :eof

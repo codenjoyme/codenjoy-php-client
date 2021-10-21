@@ -9,7 +9,6 @@ require_once('../../../engine/Point.php');
 require_once('../../../games/mollymage/Solver.php');
 require_once('../../../games/mollymage/Board.php');
 require_once('../../../games/mollymage/Element.php');
-require_once('../../../games/mollymage/Action.php');
 
 class SolverTest extends PHPUnit\Framework\TestCase
 {

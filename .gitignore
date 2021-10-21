@@ -1,4 +1,6 @@
 .php/
+.tools/php.zip
+.tools/composer.phar
 composer.phar
 vendor/
 .phpunit.result.cache
