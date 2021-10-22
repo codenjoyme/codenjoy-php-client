@@ -31,17 +31,19 @@ goto :eof
 :install
     cd %ROOT%
     set DEST=%~1
+    set URL=%~2
+    set FOLDER=%~3
     IF EXIST %TOOLS%\%DEST%.zip (
         del /Q %TOOLS%\%DEST%.zip
     )
-    powershell -command "& { set-executionpolicy remotesigned -s currentuser; [System.Net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; $client=New-Object System.Net.WebClient; $client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, 'oraclelicense=accept-securebackup-cookie'); $client.Headers.Add('user-agent', 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)'); $client.DownloadFile('%ARCH_URL%','%TOOLS%\%DEST%.zip') }"
+    powershell -command "& { set-executionpolicy remotesigned -s currentuser; [System.Net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; $client=New-Object System.Net.WebClient; $client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, 'oraclelicense=accept-securebackup-cookie'); $client.DownloadFile('%URL%','%TOOLS%\%DEST%.zip') }"
     rd /S /Q %TOOLS%\..\.%DEST%
-    if "%ARCH_FOLDER%"=="" (
+    if "%FOLDER%"=="" (
         %ARCH% x -y -o%TOOLS%\..\.%DEST% %TOOLS%\%DEST%.zip
-        echo !!!
     ) ELSE (
         %ARCH% x -y -o%TOOLS%\.. %TOOLS%\%DEST%.zip
-        rename %TOOLS%\..\%ARCH_FOLDER% .%DEST%
+        timeout 1
+        rename %TOOLS%\..\%FOLDER% .%DEST%
     )
     cd %ROOT%
     goto :eof

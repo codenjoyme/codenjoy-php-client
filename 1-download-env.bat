@@ -14,7 +14,7 @@ IF EXIST %TOOLS%\..\vendor (
     rd /S /Q %TOOLS%\..\vendor
 )
 
-call lib.bat :install php
+call lib.bat :install php %ARCH_URL% %ARCH_FOLDER%
 
 echo Downloading composer.phar
 IF EXIST %TOOLS%\composer.phar (
