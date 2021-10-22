@@ -1,7 +1,7 @@
 call 0-settings.bat
 
 echo off
-call lib.bat :color Installing php...
+call lib :color Installing php...
 echo on
 
 if "%SKIP_PHP_INSTALL%"=="true" ( goto :skip )
@@ -14,7 +14,7 @@ IF EXIST %TOOLS%\..\vendor (
     rd /S /Q %TOOLS%\..\vendor
 )
 
-call lib.bat :install php %ARCH_URL% %ARCH_FOLDER%
+call lib :install php %ARCH_URL% %ARCH_FOLDER%
 
 echo Downloading composer.phar
 IF EXIST %TOOLS%\composer.phar (
@@ -26,17 +26,17 @@ cd %ROOT%
 
 xcopy /y %TOOLS%\php.ini %PHP_HOME%\
 
-call lib.bat :print_color %PHP% -v
+call lib :print_color %PHP% -v
 
-call lib.bat :ask
+call lib :ask
 
 goto :eof
 
 :skip
 	echo off
-	call lib.bat :color Installation skipped
-	call lib.bat :color INSTALL_LOCALLY=%INSTALL_LOCALLY%
-	call lib.bat :color SKIP_PHP_INSTALL=%SKIP_PHP_INSTALL%
+	call lib :color Installation skipped
+	call lib :color INSTALL_LOCALLY=%INSTALL_LOCALLY%
+	call lib :color SKIP_PHP_INSTALL=%SKIP_PHP_INSTALL%
 	echo on
-	call lib.bat :ask
+	call lib :ask
     goto :eof

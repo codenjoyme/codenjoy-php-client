@@ -1,5 +1,5 @@
 echo off
-call lib.bat :color Setup variables...
+call lib :color Setup variables...
 echo on
 
 if "%GAME_TO_RUN%"=="" ( set GAME_TO_RUN=mollymage)
@@ -26,7 +26,7 @@ set PHP=%PHP_HOME%\php.exe
 set PHPUNIT=%ROOT%\vendor\bin\phpunit.bat
 
 echo off
-call lib.bat :color PHP_HOME=%PHP_HOME%
+call lib :color PHP_HOME=%PHP_HOME%
 echo on
 
 set ARCH_URL=https://windows.php.net/downloads/releases/archives/php-8.0.8-nts-Win32-vs16-x64.zip
