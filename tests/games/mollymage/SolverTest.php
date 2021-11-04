@@ -22,7 +22,7 @@
 # #L%
 ###
 
-use MollyMage\Solver;
+use Mollymage\Solver;
 
 require_once('../../../engine/Direction.php');
 require_once('../../../engine/GameSolver.php');

@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace MollyMage;
+namespace Mollymage;
 
 include 'games/mollymage/Board.php';
 include 'games/mollymage/Element.php';

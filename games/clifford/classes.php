@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace DetectiveClifford;
+namespace Clifford;
 
 include 'games/clifford/Board.php';
 include 'games/clifford/Element.php';

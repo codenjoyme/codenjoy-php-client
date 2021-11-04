@@ -22,7 +22,7 @@
 # #L%
 ###
 
-use DetectiveClifford\Solver;
+use Clifford\Solver;
 
 require_once('../../../engine/Direction.php');
 require_once('../../../engine/GameSolver.php');

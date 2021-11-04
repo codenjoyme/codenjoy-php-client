@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace MollyMage;
+namespace Mollymage;
 
 use GameSolver;
 use Direction;

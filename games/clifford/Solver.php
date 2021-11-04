@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace DetectiveClifford;
+namespace Clifford;
 
 use GameSolver;
 use Direction;

@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace DetectiveClifford;
+namespace Clifford;
 
 abstract class Element
 {

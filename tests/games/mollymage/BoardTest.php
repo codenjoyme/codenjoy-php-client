@@ -22,8 +22,8 @@
 # #L%
 ###
 
-use MollyMage\Board;
-use MollyMage\Element;
+use Mollymage\Board;
+use Mollymage\Element;
 
 require_once('../../../engine/GameSolver.php');
 require_once('../../../engine/GameBoard.php');

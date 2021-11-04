@@ -22,8 +22,8 @@
 # #L%
 ###
 
-use DetectiveClifford\Board;
-use DetectiveClifford\Element;
+use Clifford\Board;
+use Clifford\Element;
 
 require_once('../../../engine/GameSolver.php');
 require_once('../../../engine/GameBoard.php');
