@@ -22,28 +22,28 @@
 # #L%
 ###
 
-namespace Sample;
+use Sample\Solver;
 
-use GameSolver;
-use Direction;
+require_once('../../../engine/Direction.php');
+require_once('../../../engine/GameSolver.php');
+require_once('../../../engine/GameBoard.php');
+require_once('../../../engine/Point.php');
+require_once('../../../games/sample/Solver.php');
+require_once('../../../games/sample/Board.php');
+require_once('../../../games/sample/Element.php');
 
-class Solver implements GameSolver
+class SolverTest extends PHPUnit\Framework\TestCase
 {
 
-    public function answer(string $message): string
+    public function test_answer()
     {
-        $board = new Board($message);
-        print "Board \n" . $board->__toString() . "\n";
-        $action = $this->nextAction($board);
-        print "\nAnswer: " . $action . "\n";
-        print "-------------------------------------------------------------\n";
-        return $action->__toString();
-    }
-
-    private function nextAction(Board $board): Direction
-    {
-        // TODO: write your code here
-        global $ACT;
-        return $ACT;
+        $message = "board=" .
+            "☼☼☼☼☼" .
+            "☼   ☼" .
+            "☼ ☺ ☼" .
+            "☼   ☼" .
+            "☼☼☼☼";
+        $solver = new Solver();
+        $this->assertEquals("ACT", $solver->answer($message));
     }
 }

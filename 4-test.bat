@@ -24,4 +24,10 @@ cd %ROOT%
 
 call lib :sep
 
+cd tests\games\sample
+call %PHPUNIT% --no-configuration %CD%\
+cd %ROOT%
+
+call lib :sep
+
 call lib :ask
