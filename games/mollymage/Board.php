@@ -53,9 +53,11 @@ class Board
         $points = $this->board->find(
             Element::$elements['HERO'],
             Element::$elements['POTION_HERO'],
-            Element::$elements['DEAD_HERO']);
+            Element::$elements['DEAD_HERO']
+        );
+
         if (count($points) == 0) {
-            throw new UnexpectedValueException("hero element has not been found");
+            throw new UnexpectedValueException("Hero element has not been found");
         }
         return $points[0];
     }
