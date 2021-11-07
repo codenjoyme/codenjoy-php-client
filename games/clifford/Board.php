@@ -66,7 +66,7 @@ class Board
         );
 
         if (count($points) == 0) {
-            throw new UnexpectedValueException("hero element has not been found");
+            throw new UnexpectedValueException("Hero element has not been found");
         }
         return $points[0];
     }

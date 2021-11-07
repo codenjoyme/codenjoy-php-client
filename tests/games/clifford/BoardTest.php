@@ -42,6 +42,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
         $board = new Board("###" . "Ѡ##" . "###");
         $this->assertEquals(true, $board->isGameOver());
+
         $board = new Board("###" . "x##" . "###");
         $this->assertEquals(true, $board->isGameOver());
     }
@@ -50,30 +51,32 @@ class BoardTest extends PHPUnit\Framework\TestCase
     {
         $board = new Board("Ѡ##" . "###" . "###");
         $this->assertEquals(new Point(0, 2), $board->findHero());
-        $board = new Board("#Я#" . "###" . "###");
+
+        $board = new Board("#◄#" . "###" . "###");
         $this->assertEquals(new Point(1, 2), $board->findHero());
-        $board = new Board("##R" . "###" . "###");
+
+        $board = new Board("##►" . "###" . "###");
         $this->assertEquals(new Point(2, 2), $board->findHero());
+
         $board = new Board("###" . "Y##" . "###");
         $this->assertEquals(new Point(0, 1), $board->findHero());
+
         $board = new Board("###" . "#◄#" . "###");
         $this->assertEquals(new Point(1, 1), $board->findHero());
+
         $board = new Board("###" . "##►" . "###");
         $this->assertEquals(new Point(2, 1), $board->findHero());
+
         $board = new Board("###" . "###" . "]##");
         $this->assertEquals(new Point(0, 0), $board->findHero());
-        $board = new Board("###" . "###" . "#[#");
-        $this->assertEquals(new Point(1, 0), $board->findHero());
+
         $board = new Board("###" . "###" . "##{");
         $this->assertEquals(new Point(2, 0), $board->findHero());
-        $board = new Board("###" . "###" . "##}");
-        $this->assertEquals(new Point(2, 0), $board->findHero());
+
         $board = new Board("###" . "###" . "##⍃");
         $this->assertEquals(new Point(2, 0), $board->findHero());
-        $board = new Board("###" . "###" . "##⍄");
-        $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("⍃⍄ѠЯ" . "RY◄►" . "][{}" . "####");
+        $board = new Board("⍃⍃Ѡ◄" . "►Y◄►" . "]]{{" . "####");
         $this->assertEquals(new Point(0, 1), $board->findHero());
     }
 
@@ -81,30 +84,26 @@ class BoardTest extends PHPUnit\Framework\TestCase
     {
         $board = new Board("x##" . "###" . "###");
         $this->assertEquals(new Point(0, 2), $board->findHero());
-        $board = new Board("#⊰#" . "###" . "###");
-        $this->assertEquals(new Point(1, 2), $board->findHero());
-        $board = new Board("##⊱" . "###" . "###");
-        $this->assertEquals(new Point(2, 2), $board->findHero());
+
         $board = new Board("###" . "⍬##" . "###");
         $this->assertEquals(new Point(0, 1), $board->findHero());
+
         $board = new Board("###" . "#⊲#" . "###");
         $this->assertEquals(new Point(1, 1), $board->findHero());
+
         $board = new Board("###" . "##⊳" . "###");
         $this->assertEquals(new Point(2, 1), $board->findHero());
+
         $board = new Board("###" . "###" . "⊅##");
         $this->assertEquals(new Point(0, 0), $board->findHero());
-        $board = new Board("###" . "###" . "#⊄#");
-        $this->assertEquals(new Point(1, 0), $board->findHero());
+
         $board = new Board("###" . "###" . "##⋜");
         $this->assertEquals(new Point(2, 0), $board->findHero());
-        $board = new Board("###" . "###" . "##⋝");
-        $this->assertEquals(new Point(2, 0), $board->findHero());
+
         $board = new Board("###" . "###" . "##ᐊ");
         $this->assertEquals(new Point(2, 0), $board->findHero());
-        $board = new Board("###" . "###" . "##ᐅ");
-        $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("ᐊᐅx⊰" . "⊱⍬⊲⊳" . "⊅⊄⋜⋝" . "####");
+        $board = new Board("ᐊ x " . " ⍬⊲⊳" . "⊅  ⋜" . "####");
         $this->assertEquals(new Point(0, 1), $board->findHero());
     }
 
@@ -117,40 +116,40 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findOtherHeroes()
     {
-        $board = new Board("##Z⌋" . "⌊U)(" . "⊐⊏ЭЄ" . "ᗉᗆ##");
+        $board = new Board("Z( " . "U) " . "ᗉЭ⊐");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
-            new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 1),
-            new Point(2, 2), new Point(2, 3), new Point(3, 1), new Point(3, 2),
-            new Point(3, 3)], $board->findOtherHeroes());
+            new Point(1, 0), new Point(1, 1), new Point(1, 2),
+            new Point(2, 0)],
+            $board->findOtherHeroes());
 
-        $board = new Board("##⋈⋰" . "⋱⋕⋊⋉" . "⋣⋢⊣⊢" . "ᗏᗌ##");
+        $board = new Board("⋈⋣ " . "⋊⋉ " . "⊣ᗏ⋕");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
-            new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 1),
-            new Point(2, 2), new Point(2, 3), new Point(3, 1), new Point(3, 2),
-            new Point(3, 3)], $board->findOtherHeroes());
+            new Point(1, 0), new Point(1, 1), new Point(1, 2),
+            new Point(2, 0)],
+            $board->findOtherHeroes());
     }
 
     public function test_findEnemyHeroes()
     {
-        $board = new Board("##Ž⟧" . "⟦Ǔ❫❪" . "⋥⋤ǮĚ" . "⇇⇉##");
+        $board = new Board("Ž❪ " . "Ǔ❫ " . "⋥Ǯ⇇");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
-            new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 1),
-            new Point(2, 2), new Point(2, 3), new Point(3, 1), new Point(3, 2),
-            new Point(3, 3)], $board->findEnemyHeroes());
+            new Point(1, 0), new Point(1, 1), new Point(1, 2),
+            new Point(2, 0)],
+            $board->findEnemyHeroes());
 
-        $board = new Board("##⧓⇢" . "⇠≠⧒⧑" . "⌫⌦❵❴" . "⬱⇶##");
+        $board = new Board("⧓⬱ " . "≠⧒ " . "⌫❵⧑");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
-            new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 1),
-            new Point(2, 2), new Point(2, 3), new Point(3, 1), new Point(3, 2),
-            new Point(3, 3)], $board->findEnemyHeroes());
+            new Point(1, 0), new Point(1, 1), new Point(1, 2),
+            new Point(2, 0)],
+            $board->findEnemyHeroes());
     }
 
     public function test_findRobbers()
     {
-        $board = new Board("Q«»" . "‹›<" . ">⍇⍈");
+        $board = new Board("Q« " . "‹< " . "»⍇ ");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
-            new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0),
-            new Point(2, 1), new Point(2, 2)], $board->findRobbers());
+            new Point(1, 0), new Point(1, 1), new Point(1, 2)],
+            $board->findRobbers());
     }
 
     public function test_findBarriers()
@@ -204,26 +203,26 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "☼ ►*## \$☼" .
             "☼ H ⧒⧒ ✼☼" .
             "☼ H  1 ⍍☼" .
-            "☼S ⊐ &  ☼" .
+            "☼S   &  ☼" .
             "☼ ✦ ~~~ ☼" .
-            "☼Z3 ⌺ ⊏ ☼" .
-            "☼ @@ ⍈Q ☼" .
+            "☼Z3 ⌺   ☼" .
+            "☼ @@  Q ☼" .
             "☼☼☼☼☼☼☼☼☼");
         $this->assertEquals("" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "☼ ►*## \$☼\n" .
             "☼ H ⧒⧒ ✼☼\n" .
             "☼ H  1 ⍍☼\n" .
-            "☼S ⊐ &  ☼\n" .
+            "☼S   &  ☼\n" .
             "☼ ✦ ~~~ ☼\n" .
-            "☼Z3 ⌺ ⊏ ☼\n" .
-            "☼ @@ ⍈Q ☼\n" .
+            "☼Z3 ⌺   ☼\n" .
+            "☼ @@  Q ☼\n" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "\n" .
             "Hero at: [2,7]\n" .
-            "Other heroes at: [1,2][3,4][6,2]\n" .
+            "Other heroes at: [1,2]\n" .
             "Enemy heroes at: [4,6][5,6]\n" .
-            "Robbers at: [5,1][6,1]\n" .
+            "Robbers at: [6,1]\n" .
             "Mask potions at: [1,4]\n" .
             "Keys at: [2,3][7,6]", $board->__toString());
     }
