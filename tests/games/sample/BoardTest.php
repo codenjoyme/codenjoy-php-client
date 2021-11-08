@@ -106,7 +106,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
             $board->findGold());
     }
 
-    public function test_bomb()
+    public function test_bombs()
     {
         $board = new Board("☼☼x" . "☼☼x" . "☼☼☼");
         $this->assertEquals(
@@ -127,15 +127,15 @@ class BoardTest extends PHPUnit\Framework\TestCase
             "☼ $ ☻ x ☼" .
             "☼☼☼☼☼☼☼☼☼");
         $this->assertEquals("" .
-            /*8*/ "☼☼☼☼☼☼☼☼☼\n" .
-            /*7*/ "☼ x☺  Y ☼\n" .
-            /*6*/ "☼  x    ☼\n" .
-            /*5*/ "☼ $  ☻  ☼\n" .
-            /*4*/ "☼      x☼\n" .
-            /*3*/ "☼ ☻     ☼\n" .
-            /*2*/ "☼       ☼\n" .
-            /*1*/ "☼ $ ☻ x ☼\n" .
-            /*0*/ "☼☼☼☼☼☼☼☼☼\n" .
+            /*8*/"☼☼☼☼☼☼☼☼☼\n" .
+            /*7*/"☼ x☺  Y ☼\n" .
+            /*6*/"☼  x    ☼\n" .
+            /*5*/"☼ $  ☻  ☼\n" .
+            /*4*/"☼      x☼\n" .
+            /*3*/"☼ ☻     ☼\n" .
+            /*2*/"☼       ☼\n" .
+            /*1*/"☼ $ ☻ x ☼\n" .
+            /*0*/"☼☼☼☼☼☼☼☼☼\n" .
                 /*012345678*/
             "\n" .
             "Hero at: [3,7]\n" .
