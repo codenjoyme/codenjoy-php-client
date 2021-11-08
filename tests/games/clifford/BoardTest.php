@@ -52,12 +52,6 @@ class BoardTest extends PHPUnit\Framework\TestCase
         $board = new Board("Ѡ##" . "###" . "###");
         $this->assertEquals(new Point(0, 2), $board->findHero());
 
-        $board = new Board("#◄#" . "###" . "###");
-        $this->assertEquals(new Point(1, 2), $board->findHero());
-
-        $board = new Board("##►" . "###" . "###");
-        $this->assertEquals(new Point(2, 2), $board->findHero());
-
         $board = new Board("###" . "Y##" . "###");
         $this->assertEquals(new Point(0, 1), $board->findHero());
 
@@ -76,8 +70,8 @@ class BoardTest extends PHPUnit\Framework\TestCase
         $board = new Board("###" . "###" . "##⍃");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("⍃⍃Ѡ◄" . "►Y◄►" . "]]{{" . "####");
-        $this->assertEquals(new Point(0, 1), $board->findHero());
+        $board = new Board("⍃Ѡ " . "Y◄►" . "]{ ");
+        $this->assertEquals(new Point(0, 0), $board->findHero());
     }
 
     public function test_findMaskHero()
@@ -103,8 +97,8 @@ class BoardTest extends PHPUnit\Framework\TestCase
         $board = new Board("###" . "###" . "##ᐊ");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("ᐊ x " . " ⍬⊲⊳" . "⊅  ⋜" . "####");
-        $this->assertEquals(new Point(0, 1), $board->findHero());
+        $board = new Board("ᐊx " . "⍬⊲⊳" . "⊅⋜ ");
+        $this->assertEquals(new Point(0, 0), $board->findHero());
     }
 
     public function test_findHero_noResult()
