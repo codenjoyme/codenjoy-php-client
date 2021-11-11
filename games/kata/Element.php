@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace Lunolet;
+namespace Kata;
 
 abstract class Element
 {

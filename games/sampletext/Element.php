@@ -22,7 +22,7 @@
 # #L%
 ###
 
-namespace Lunolet;
+namespace Sampletext;
 
 abstract class Element
 {
