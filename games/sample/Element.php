@@ -32,7 +32,7 @@ abstract class Element
 
         "NONE" => ' ',
 
-            # Wall you can't walk through.
+            # Wall you cant walk through.
 
         "WALL" => '☼',
 
