@@ -43,7 +43,7 @@ class Solver implements GameSolver
     private function nextAction(Board $board): Direction
     {
         // TODO: write your code here
-        global $ACT;
-        return $ACT;
+        global $RIGHT;
+        return $RIGHT;
     }
 }

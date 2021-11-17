@@ -44,6 +44,6 @@ class SolverTest extends PHPUnit\Framework\TestCase
             "☼   ☼" .
             "☼☼☼☼";
         $solver = new Solver();
-        $this->assertEquals("ACT", $solver->answer($message));
+        $this->assertEquals("RIGHT", $solver->answer($message));
     }
 }
