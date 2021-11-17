@@ -37,86 +37,86 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_isGameOver()
     {
-        $board = new Board("###" . "##►" . "###");
+        $board = new Board("#####►###");
         $this->assertEquals(false, $board->isGameOver());
 
-        $board = new Board("###" . "Ѡ##" . "###");
+        $board = new Board("###O#####");
         $this->assertEquals(true, $board->isGameOver());
 
-        $board = new Board("###" . "x##" . "###");
+        $board = new Board("###o#####");
         $this->assertEquals(true, $board->isGameOver());
     }
 
     public function test_findHero()
     {
-        $board = new Board("Ѡ##" . "###" . "###");
+        $board = new Board("O########");
         $this->assertEquals(new Point(0, 2), $board->findHero());
 
-        $board = new Board("###" . "Y##" . "###");
+        $board = new Board("###A#####");
         $this->assertEquals(new Point(0, 1), $board->findHero());
 
-        $board = new Board("###" . "#◄#" . "###");
+        $board = new Board("####◄####");
         $this->assertEquals(new Point(1, 1), $board->findHero());
 
-        $board = new Board("###" . "##►" . "###");
+        $board = new Board("#####►###");
         $this->assertEquals(new Point(2, 1), $board->findHero());
 
-        $board = new Board("###" . "###" . "]##");
+        $board = new Board("######U##");
         $this->assertEquals(new Point(0, 0), $board->findHero());
 
-        $board = new Board("###" . "###" . "##{");
+        $board = new Board("########I");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("###" . "###" . "##⍃");
+        $board = new Board("########E");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("⍃Ѡ " . "Y◄►" . "]{ ");
+        $board = new Board("EO A◄►UI ");
         $this->assertEquals(new Point(0, 0), $board->findHero());
     }
 
     public function test_findMaskHero()
     {
-        $board = new Board("x##" . "###" . "###");
+        $board = new Board("o########");
         $this->assertEquals(new Point(0, 2), $board->findHero());
 
-        $board = new Board("###" . "⍬##" . "###");
+        $board = new Board("###a#####");
         $this->assertEquals(new Point(0, 1), $board->findHero());
 
-        $board = new Board("###" . "#⊲#" . "###");
+        $board = new Board("####h####");
         $this->assertEquals(new Point(1, 1), $board->findHero());
 
-        $board = new Board("###" . "##⊳" . "###");
+        $board = new Board("#####w###");
         $this->assertEquals(new Point(2, 1), $board->findHero());
 
-        $board = new Board("###" . "###" . "⊅##");
+        $board = new Board("######u##");
         $this->assertEquals(new Point(0, 0), $board->findHero());
 
-        $board = new Board("###" . "###" . "##⋜");
+        $board = new Board("########i");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("###" . "###" . "##ᐊ");
+        $board = new Board("########e");
         $this->assertEquals(new Point(2, 0), $board->findHero());
 
-        $board = new Board("ᐊx " . "⍬⊲⊳" . "⊅⋜ ");
+        $board = new Board("eo awhui ");
         $this->assertEquals(new Point(0, 0), $board->findHero());
     }
 
     public function test_findHero_noResult()
     {
         $this->expectException(UnexpectedValueException::class);
-        $board = new Board("###" . "###" . "###");
+        $board = new Board("#########");
         $board->findHero();
     }
 
     public function test_findOtherHeroes()
     {
-        $board = new Board("Z( " . "U) " . "ᗉЭ⊐");
+        $board = new Board("C» D« KJF");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
             new Point(1, 0), new Point(1, 1), new Point(1, 2),
             new Point(2, 0)],
             $board->findOtherHeroes());
 
-        $board = new Board("⋈⋣ " . "⋊⋉ " . "⊣ᗏ⋕");
+        $board = new Board("cz dZ kjf");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
             new Point(1, 0), new Point(1, 1), new Point(1, 2),
             new Point(2, 0)],
@@ -125,13 +125,13 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findEnemyHeroes()
     {
-        $board = new Board("Ž❪ " . "Ǔ❫ " . "⋥Ǯ⇇");
+        $board = new Board("LP NQ RTV");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
             new Point(1, 0), new Point(1, 1), new Point(1, 2),
             new Point(2, 0)],
             $board->findEnemyHeroes());
 
-        $board = new Board("⧓⬱ " . "≠⧒ " . "⌫❵⧑");
+        $board = new Board("lp nq rtv");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
             new Point(1, 0), new Point(1, 1), new Point(1, 2),
             new Point(2, 0)],
@@ -140,7 +140,7 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findRobbers()
     {
-        $board = new Board("Q« " . "‹< " . "»⍇ ");
+        $board = new Board("X) xY (y ");
         $this->assertEquals([new Point(0, 0), new Point(0, 1), new Point(0, 2),
             new Point(1, 0), new Point(1, 1), new Point(1, 2)],
             $board->findRobbers());
@@ -148,45 +148,45 @@ class BoardTest extends PHPUnit\Framework\TestCase
 
     public function test_findBarriers()
     {
-        $board = new Board("  #" . "  ☼" . "   ");
+        $board = new Board("  #  ☼   ");
         $this->assertEquals(array(new Point(2, 1), new Point(2, 2)), $board->findBarriers());
     }
 
     public function test_findPits()
     {
-        $board = new Board("123" . "4**" . "###");
+        $board = new Board("1234**###");
         $this->assertEquals([new Point(0, 1), new Point(0, 2), new Point(1, 1),
             new Point(1, 2), new Point(2, 1), new Point(2, 2)], $board->findPits());
     }
 
     public function test_findClues()
     {
-        $board = new Board("##$" . "##&" . "##@");
+        $board = new Board("##$##&##@");
         $this->assertEquals(array(new Point(2, 0), new Point(2, 1), new Point(2, 2)), $board->findClues());
     }
 
     public function test_findBackways()
     {
-        $board = new Board("##⊛" . "###" . "###");
+        $board = new Board("##W######");
         $this->assertEquals(array(new Point(2, 2)), $board->findBackways());
     }
 
     public function test_findPotions()
     {
-        $board = new Board("##S" . "###" . "###");
+        $board = new Board("##m######");
         $this->assertEquals(array(new Point(2, 2)), $board->findPotions());
     }
 
     public function test_findDoors()
     {
-        $board = new Board("⍙⍚⍜" . "⍍⌺⌼" . "###");
+        $board = new Board("gsbGSB###");
         $this->assertEquals([new Point(0, 1), new Point(0, 2), new Point(1, 1),
             new Point(1, 2), new Point(2, 1), new Point(2, 2)], $board->findDoors());
     }
 
     public function test_findKeys()
     {
-        $board = new Board("✦✼⍟" . "###" . "###");
+        $board = new Board("+-!######");
         $this->assertEquals([new Point(0, 2), new Point(1, 2), new Point(2, 2)], $board->findKeys());
     }
 
@@ -195,22 +195,22 @@ class BoardTest extends PHPUnit\Framework\TestCase
         $board = new Board("board=" .
             "☼☼☼☼☼☼☼☼☼" .
             "☼ ►*## \$☼" .
-            "☼ H ⧒⧒ ✼☼" .
-            "☼ H  1 ⍍☼" .
-            "☼S   &  ☼" .
-            "☼ ✦ ~~~ ☼" .
-            "☼Z3 ⌺   ☼" .
-            "☼ @@  Q ☼" .
+            "☼ H pq -☼" .
+            "☼ H  1 G☼" .
+            "☼m   &  ☼" .
+            "☼ + ~~~ ☼" .
+            "☼Z3 S   ☼" .
+            "☼ @@  X ☼" .
             "☼☼☼☼☼☼☼☼☼");
         $this->assertEquals("" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "☼ ►*## \$☼\n" .
-            "☼ H ⧒⧒ ✼☼\n" .
-            "☼ H  1 ⍍☼\n" .
-            "☼S   &  ☼\n" .
-            "☼ ✦ ~~~ ☼\n" .
-            "☼Z3 ⌺   ☼\n" .
-            "☼ @@  Q ☼\n" .
+            "☼ H pq -☼\n" .
+            "☼ H  1 G☼\n" .
+            "☼m   &  ☼\n" .
+            "☼ + ~~~ ☼\n" .
+            "☼Z3 S   ☼\n" .
+            "☼ @@  X ☼\n" .
             "☼☼☼☼☼☼☼☼☼\n" .
             "\n" .
             "Hero at: [2,7]\n" .

@@ -40,7 +40,7 @@ class SolverTest extends PHPUnit\Framework\TestCase
         $message = "board=" .
             "☼☼☼☼☼" .
             "☼   ☼" .
-            "☼ ⊳ ☼" .
+            "☼ ► ☼" .
             "☼   ☼" .
             "☼☼☼☼";
         $solver = new Solver();
