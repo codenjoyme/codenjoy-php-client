@@ -28,6 +28,7 @@ set PHP=%PHP_HOME%\php.exe
 set PHPUNIT=%ROOT%\vendor\bin\phpunit.bat
 
 echo off
+call lib :color PATH=%PATH%
 call lib :color PHP_HOME=%PHP_HOME%
 echo on
 
