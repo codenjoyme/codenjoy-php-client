@@ -1,0 +1,15 @@
+FROM composer:2.1.9
+
+ARG SERVER_URL
+ENV SERVER_URL_VAR=$SERVER_URL
+
+ARG GAME_TO_RUN
+ENV GAME_TO_RUN_VAR=$GAME_TO_RUN
+
+WORKDIR /app
+
+COPY . ./
+
+RUN php /usr/bin/composer u
+
+ENTRYPOINT php ./index.php "$GAME_TO_RUN_VAR" "$SERVER_URL_VAR"
