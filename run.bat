@@ -35,7 +35,6 @@
 :restart
     set OPTION=
     SET BUILD_ARGS=
-    SET BUILD_ARGS_QUOTES=
     goto :start
 
 :init_colors 
