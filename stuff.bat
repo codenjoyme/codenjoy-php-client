@@ -53,7 +53,7 @@ call run :init_colors
     goto :eof
 
 :version
-    call run :print_color %PHP% -v
+    call run :eval_echo_color ‘%PHP% -v‘
     goto :eof
 
 :build
