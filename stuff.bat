@@ -12,7 +12,7 @@ call run :init_colors
 
 :run_executable
     rem run stuff.bat as executable script
-    call run :color ‘%CL_INFO%‘ ‘%CL_INFO%‘ ‘This is not executable script. Please use 'run.bat' only.‘
+    call run :color ‘%CL_INFO%‘ ‘This is not executable script. Please use 'run.bat' only.‘
     call run :ask   
     goto :eof
 
