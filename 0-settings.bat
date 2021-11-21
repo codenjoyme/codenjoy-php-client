@@ -3,7 +3,7 @@ call lib :color Setup variables...
 echo on
 
 if "%GAME_TO_RUN%"=="" ( set GAME_TO_RUN=mollymage)
-if "%BOARD_URL%"==""   ( set BOARD_URL=http://127.0.0.1:8080/codenjoy-contest/board/player/0?code=000000000000)
+if "%SERVER_URL%"==""   ( set SERVER_URL=http://127.0.0.1:8080/codenjoy-contest/board/player/0?code=000000000000)
 
 set ROOT=%CD%
 
