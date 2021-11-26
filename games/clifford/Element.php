@@ -303,7 +303,7 @@ abstract class Element
 
         "CLOSED_DOOR_BRONZE" => 'B',
 
-            # Bronze key. Helps open/close golden gates. The key can only
+            # Golden key. Helps open/close golden gates. The key can only
             # be used once.
 
         "KEY_GOLD" => '+',
