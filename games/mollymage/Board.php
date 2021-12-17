@@ -128,7 +128,7 @@ class Board
 
     public function findBlasts(): array
     {
-        return $this->board->find(Element::$elements['BOOM']);
+        return $this->board->find(Element::$elements['BLAST']);
     }
 
     public function predictFutureBlasts(): array
