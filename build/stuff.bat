@@ -60,33 +60,33 @@ call %RUN% :init_colors
     goto :eof
 
 :build
-    call %RUN% :eval_echo ‘%PHP% composer.phar u‘
+    call %RUN% :eval_echo ‘%PHP% .\composer.phar u‘
     goto :eof
 
 :test    
-    call %ROOT%\run :color ‘%CL_HEADER%‘ ‘Engine tests...‘
-    call %ROOT%\run :eval_echo ‘cd tests\engine‘
-    call %ROOT%\run :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %ROOT%\run :eval_echo ‘cd %ROOT%‘
+    call %RUN% :color ‘%CL_HEADER%‘ ‘Engine tests...‘
+    call %RUN% :eval_echo ‘cd tests\engine‘
+    call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
+    call %RUN% :eval_echo ‘cd %ROOT%‘
     
-    call %ROOT%\run :color ‘%CL_HEADER%‘ ‘Clifford tests...‘
-    call %ROOT%\run :eval_echo ‘cd tests\games\clifford‘
-    call %ROOT%\run :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %ROOT%\run :eval_echo ‘cd %ROOT%‘
+    call %RUN% :color ‘%CL_HEADER%‘ ‘Clifford tests...‘
+    call %RUN% :eval_echo ‘cd tests\games\clifford‘
+    call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
+    call %RUN% :eval_echo ‘cd %ROOT%‘
 
-    call %ROOT%\run :color ‘%CL_HEADER%‘ ‘Mollymage tests...‘
-    call %ROOT%\run :eval_echo ‘cd tests\games\mollymage‘
-    call %ROOT%\run :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %ROOT%\run :eval_echo ‘cd %ROOT%‘
+    call %RUN% :color ‘%CL_HEADER%‘ ‘Mollymage tests...‘
+    call %RUN% :eval_echo ‘cd tests\games\mollymage‘
+    call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
+    call %RUN% :eval_echo ‘cd %ROOT%‘
 
-    call %ROOT%\run :color ‘%CL_HEADER%‘ ‘Sample tests...‘
-    call %ROOT%\run :eval_echo ‘cd tests\games\sample‘
-    call %ROOT%\run :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %ROOT%\run :eval_echo ‘cd %ROOT%‘
+    call %RUN% :color ‘%CL_HEADER%‘ ‘Sample tests...‘
+    call %RUN% :eval_echo ‘cd tests\games\sample‘
+    call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
+    call %RUN% :eval_echo ‘cd %ROOT%‘
 
     call %RUN% :sep
     goto :eof
 
 :run
-    call %RUN% :eval_echo ‘%PHP% index.php %GAME_TO_RUN% %SERVER_URL%‘
+    call %RUN% :eval_echo ‘%PHP% .\index.php %GAME_TO_RUN% %SERVER_URL%‘
     goto :eof
