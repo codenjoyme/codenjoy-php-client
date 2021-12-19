@@ -65,24 +65,20 @@ call %RUN% :init_colors
 
 :test    
     call %RUN% :color ‘%CL_HEADER%‘ ‘Engine tests...‘
-    call %RUN% :eval_echo ‘cd tests\engine‘
+    call %RUN% :eval_echo ‘cd %ROOT%\tests\engine‘
     call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %RUN% :eval_echo ‘cd %ROOT%‘
-    
+
     call %RUN% :color ‘%CL_HEADER%‘ ‘Clifford tests...‘
-    call %RUN% :eval_echo ‘cd tests\games\clifford‘
+    call %RUN% :eval_echo ‘cd ROOT%\tests\games\clifford‘
     call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %RUN% :eval_echo ‘cd %ROOT%‘
 
     call %RUN% :color ‘%CL_HEADER%‘ ‘Mollymage tests...‘
-    call %RUN% :eval_echo ‘cd tests\games\mollymage‘
+    call %RUN% :eval_echo ‘cd ROOT%\tests\games\mollymage‘
     call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %RUN% :eval_echo ‘cd %ROOT%‘
 
     call %RUN% :color ‘%CL_HEADER%‘ ‘Sample tests...‘
-    call %RUN% :eval_echo ‘cd tests\games\sample‘
+    call %RUN% :eval_echo ‘cd ROOT%\tests\games\sample‘
     call %RUN% :eval_echo ‘call %PHPUNIT% --no-configuration %CD%\‘
-    call %RUN% :eval_echo ‘cd %ROOT%‘
 
     call %RUN% :sep
     goto :eof
