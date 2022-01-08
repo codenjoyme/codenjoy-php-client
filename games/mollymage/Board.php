@@ -64,7 +64,7 @@ class Board
 
     public function isGameOver(): bool
     {
-        return $this->board->findFirst(Element::$elements['DEAD_HERO']) != null;
+        return $this->board->findFirst(Element::$elements['HERO_DEAD']) != null;
     }
 
     public function findOtherHeroes(): array
