@@ -52,8 +52,8 @@ class Board
     {
         $points = $this->board->find(
             Element::$elements['HERO'],
-            Element::$elements['POTION_HERO'],
-            Element::$elements['DEAD_HERO']
+            Element::$elements['HERO_POTION'],
+            Element::$elements['HERO_DEAD']
         );
 
         if (count($points) == 0) {
@@ -71,8 +71,8 @@ class Board
     {
         return $this->board->find(
             Element::$elements['OTHER_HERO'],
-            Element::$elements['OTHER_POTION_HERO'],
-            Element::$elements['OTHER_DEAD_HERO'],
+            Element::$elements['OTHER_HERO_POTION'],
+            Element::$elements['OTHER_HERO_DEAD'],
         );
     }
 
@@ -80,8 +80,8 @@ class Board
     {
         return $this->board->find(
             Element::$elements['ENEMY_HERO'],
-            Element::$elements['ENEMY_POTION_HERO'],
-            Element::$elements['ENEMY_DEAD_HERO'],
+            Element::$elements['ENEMY_HERO_POTION'],
+            Element::$elements['ENEMY_HERO_DEAD'],
         );
     }
 
@@ -121,9 +121,9 @@ class Board
             Element::$elements['POTION_TIMER_3'],
             Element::$elements['POTION_TIMER_4'],
             Element::$elements['POTION_TIMER_5'],
-            Element::$elements['POTION_HERO'],
-            Element::$elements['OTHER_POTION_HERO'],
-            Element::$elements['ENEMY_POTION_HERO']);
+            Element::$elements['HERO_POTION'],
+            Element::$elements['OTHER_HERO_POTION'],
+            Element::$elements['ENEMY_HERO_POTION']);
     }
 
     public function findBlasts(): array
