@@ -50,7 +50,7 @@ class Board
     {
         $points = $this->board->find(
             Element::$elements['HERO'],
-            Element::$elements['DEAD_HERO']
+            Element::$elements['HERO_DEAD']
         );
 
         if (count($points) == 0) {
@@ -61,14 +61,14 @@ class Board
 
     public function isGameOver(): bool
     {
-        return $this->board->findFirst(Element::$elements['DEAD_HERO']) != null;
+        return $this->board->findFirst(Element::$elements['HERO_DEAD']) != null;
     }
 
     public function findOtherHeroes(): array
     {
         return $this->board->find(
             Element::$elements['OTHER_HERO'],
-            Element::$elements['OTHER_DEAD_HERO'],
+            Element::$elements['OTHER_HERO_DEAD'],
         );
     }
 
