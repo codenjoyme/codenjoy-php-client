@@ -28,11 +28,11 @@ abstract class Element
 {
     static array $elements = array(
 
-            # .
+            # Поле.
 
         "SQUARE" => '.',
 
-            # .
+            # Препятствие для фигур.
 
         "BARRIER" => ' ',
 
@@ -132,7 +132,7 @@ abstract class Element
 
         "BLUE_PAWN" => 'z',
 
-            # Системный спрайт - изображение шахматной доски.
+            # Изображение шахматной доски (фон).
 
         "BACKGROUND" => '-'
     );
