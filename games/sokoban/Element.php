@@ -28,7 +28,7 @@ abstract class Element
 {
     static array $elements = array(
 
-            # Emty space.
+            # Empty space.
 
         "NONE" => ' ',
 
