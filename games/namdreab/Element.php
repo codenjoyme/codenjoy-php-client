@@ -40,10 +40,6 @@ abstract class Element
 
         "START_FLOOR" => '#',
 
-            # .
-
-        "OTHER" => '?',
-
             # Apple.
 
         "APPLE" => '○',
