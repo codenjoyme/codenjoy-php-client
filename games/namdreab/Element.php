@@ -44,9 +44,9 @@ abstract class Element
 
         "BLUEBERRY" => '○',
 
-            # Stone.
+            # Acorn.
 
-        "STONE" => '●',
+        "ACORN" => '●',
 
             # Flying pill/Angel's wings.
 
