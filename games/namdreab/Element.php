@@ -48,9 +48,9 @@ abstract class Element
 
         "ACORN" => '●',
 
-            # Flying pill/Angel's wings.
+            # Death cap/Angel's wings.
 
-        "FLYING_PILL" => '©',
+        "DEATH_CAP" => '©',
 
             # Fury pill/Devil's mask.
 
@@ -84,7 +84,7 @@ abstract class Element
 
         "HEAD_EVIL" => '♥',
 
-            # Your hero head under influence Flying pill/Angels wings.
+            # Your hero head under influence Death cap/Angels wings.
 
         "HEAD_FLY" => '♠',
 
@@ -160,7 +160,7 @@ abstract class Element
 
         "ENEMY_HEAD_EVIL" => '♣',
 
-            # Enemy hero head under influence Flying pill/Angels wings.
+            # Enemy hero head under influence Death cap/Angels wings.
 
         "ENEMY_HEAD_FLY" => '♦',
 
