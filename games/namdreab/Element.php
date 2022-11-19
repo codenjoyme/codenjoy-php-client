@@ -40,9 +40,9 @@ abstract class Element
 
         "START_SPOT" => '#',
 
-            # Apple.
+            # Blueberry.
 
-        "APPLE" => '○',
+        "BLUEBERRY" => '○',
 
             # Stone.
 
